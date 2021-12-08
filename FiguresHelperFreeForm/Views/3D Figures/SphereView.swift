@@ -51,7 +51,7 @@ struct SphereView: View {
                 SectionLabelView(text: "Surface Area", variable: "")
                 
                 // Output: Area
-                OutputValueView(value: surfaceArea, suffix: "cubed units")
+                OutputValueView(value: surfaceArea, suffix: "squared units")
                 
             }
             
