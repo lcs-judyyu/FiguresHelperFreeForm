@@ -28,9 +28,9 @@ struct CircleView: View {
         return radius
     }
     
-    var area: Double {
-        
-        guard let radius = radius,
+    var area: Double? {
+                                                            
+        guard let radius = radius
         else {
      return nil
  }
