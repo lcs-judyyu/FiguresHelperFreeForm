@@ -30,7 +30,7 @@ struct CircleView: View {
     }
     
     var area: Double? {
-                                                            
+                            
         guard let radius = radius
         else {
      return nil
