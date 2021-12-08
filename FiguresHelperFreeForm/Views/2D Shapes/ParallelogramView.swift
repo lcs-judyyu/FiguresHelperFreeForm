@@ -10,13 +10,52 @@ import SwiftUI
 struct ParallelogramView: View {
     
     // MARK: Stored properties
-    @State var b = 10.0
-    @State var h = 10.0
-    @State var c = 10.0
+    @State var providedBase = ""
+    @State var providedHeight = ""
+    @State var providedDiagonal = ""
 
     // MARK: Computed properties
-    var area: Double {
-        return b * h
+    var b: Double? {
+        guard let base = Double(providedBase),
+              base > 0
+        else {
+            return nil
+        }
+        return base
+    }
+    
+    var h: Double? {
+        guard let height = Double(providedHeight),
+              height > 0
+        else {
+            return nil
+        }
+        return height
+    }
+    
+    var d: Double? {
+        guard let diagonal = Double(providedDiagonal),
+              diagonal > 0
+        else {
+            return nil
+        }
+        return diagonal
+    }
+    
+    var area: Double? {
+        guard let height = h, let base = b
+        else {
+            return nil
+        }
+        return base * height
+    }
+    
+    var perimeter: Double? {
+        guard let diagonal = d, let base = b
+        else {
+            return nil
+        }
+        return 2 * (diagonal + base)
     }
     
     var body: some View {
@@ -33,23 +72,11 @@ struct ParallelogramView: View {
                     
                     SectionLabelView(text: "Base", variable: "b")
 
-                    // Input: Base
-                    Slider(value: $b,
-                           in: 0.0...100.0,
-                           step: 0.1,
-                           label: {
-                        Text("Base")
-                    },
-                           minimumValueLabel: {
-                        Text("0")
-                    },
-                           maximumValueLabel: {
-                        Text("100")
-                    })
+                    // Input
+                    TextField("Base", text: $providedBase, prompt: Text("Numeric value greater than 0"))
+                        .foregroundColor(b == nil ? Color.red : Color.primary)
                     
-                    // Output: Base
-                    SliderValueView(value: b)
-
+                    // Output
                 }
                 
                 // Height
@@ -57,23 +84,11 @@ struct ParallelogramView: View {
                     
                     SectionLabelView(text: "Height", variable: "h")
 
-                    // Input: Height
-                    Slider(value: $h,
-                           in: 0.0...100.0,
-                           step: 0.1,
-                           label: {
-                        Text("Height")
-                    },
-                           minimumValueLabel: {
-                        Text("0")
-                    },
-                           maximumValueLabel: {
-                        Text("100")
-                    })
+                    // Input
+                    TextField("Height", text: $providedHeight, prompt: Text("Numeric value greater than 0"))
+                        .foregroundColor(h == nil ? Color.red : Color.primary)
                     
-                    // Output: Base
-                    SliderValueView(value: h)
-
+                    // Output
                 }
 
                 // Diagonal
@@ -81,29 +96,21 @@ struct ParallelogramView: View {
                     
                     SectionLabelView(text: "Diagonal", variable: "c")
 
-                    // Input: Height
-                    Slider(value: $c,
-                           in: 0.0...100.0,
-                           step: 0.1,
-                           label: {
-                        Text("Height")
-                    },
-                           minimumValueLabel: {
-                        Text("0")
-                    },
-                           maximumValueLabel: {
-                        Text("100")
-                    })
-                    
-                    // Output: Base
-                    SliderValueView(value: c)
-
+                    // Input
+                    TextField("Diagonal", text: $providedDiagonal, prompt: Text("Numeric value greater than 0"))
+                        .foregroundColor(d == nil ? Color.red : Color.primary)
+                    // Output
                 }
 
                 SectionLabelView(text: "Area", variable: "a")
                 
                 // Output: Area
                 OutputValueView(value: area, suffix: "square units")
+                
+                SectionLabelView(text: "Perimeter", variable: "p")
+                
+                // Output: Perimeter
+                OutputValueView(value: perimeter, suffix: "units")
                 
             }
             
