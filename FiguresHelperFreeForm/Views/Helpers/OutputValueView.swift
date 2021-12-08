@@ -10,7 +10,7 @@ import SwiftUI
 struct OutputValueView: View {
     
     // MARK: Stored properties
-    let value: Double
+    let value: Double?
     let suffix: String
     
     // MARK: Computed properties
@@ -26,7 +26,7 @@ struct OutputValueView: View {
     }
     
     var body: some View {
-        Text("\(formattedValue) \(suffix)")
+        Text(output)
             .font(.title3)
             .bold()
     }
