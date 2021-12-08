@@ -12,6 +12,7 @@ struct CircleView: View {
     // MARK: Stored properties
     @State var providedRadius = ""
     
+    
     // MARK: Computed properties
     //check the given input and return DOuble if possible, if not, return nil
     var radius: Double? {
