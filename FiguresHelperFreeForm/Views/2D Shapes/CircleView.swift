@@ -12,6 +12,9 @@ struct CircleView: View {
     // MARK: Stored properties
     @State var radius = 10.0
     
+    //check the given input and return DOuble if possible, if not, return nil
+    @State var providedRadius = ""
+    
     // MARK: Computed properties
     var area: Double {
         return Double.pi * radius * radius
@@ -28,21 +31,10 @@ struct CircleView: View {
                 SectionLabelView(text: "Radius", variable: "r")
 
                 // Input: Radius
-                Slider(value: $radius,
-                       in: 0.0...100.0,
-                       step: 0.1,
-                       label: {
-                    Text("Radius")
-                },
-                       minimumValueLabel: {
-                    Text("0")
-                },
-                       maximumValueLabel: {
-                    Text("100")
-                })
+                TextField("Radius", text: $providedRadius, prompt: Text("Numeric value greater than 0"))
                 
                 // Output: Radius
-                SliderValueView(value: radius)
+                // SliderValueView(value: radius)
                 
                 SectionLabelView(text: "Area", variable: "")
                 
