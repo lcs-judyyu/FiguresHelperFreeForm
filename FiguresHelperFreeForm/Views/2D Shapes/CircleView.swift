@@ -50,6 +50,9 @@ struct CircleView: View {
 
                 // Input: Radius
                 TextField("Radius", text: $providedRadius, prompt: Text("Numeric value greater than 0"))
+                //example of ternary conditional operator: one line IF statement
+                //              Condition       true        false
+                    .foregroundColor(radius == nil ? Color.red : Color.primary)
                 
                 // Output: Radius
                 // SliderValueView(value: radius)
